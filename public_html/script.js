@@ -4,7 +4,6 @@ var emplacementCgi = "cgi-bin/trame.cgi";
 var methodSend = "GET";
 var contenueSend = null;
 var xhr = new XMLHttpRequest();
-var returnCgi = "null";
 
 function findTrame()
 {
@@ -17,10 +16,9 @@ function findTrame()
         {
             if(xhr.readyState === xhr.DONE && xhr.status === 200)
             {
-                returnCgi = xhr.responseText;
-                if(document.getElementById("trame").innerHTML !== returnCgi)
+                if(document.getElementById("trame").innerHTML !== xhr.responseText)
                 {
-                    document.getElementById("trame").innerHTML = returnCgi;
+                    document.getElementById("trame").innerHTML = xhr.responseText;
                 }
             }
         }, false);
