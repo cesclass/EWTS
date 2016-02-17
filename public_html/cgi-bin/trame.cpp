@@ -1,4 +1,5 @@
 //  trame.cpp (trame.cgi)
+//  17.02 Fonctionnement [OK]
 
 #include <iostream>
 
