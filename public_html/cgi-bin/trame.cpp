@@ -1,5 +1,4 @@
 //  trame.cpp (trame.cgi)
-//  17.02 Fonctionnement [OK]
 
 #include <iostream>
 
@@ -11,4 +10,3 @@ int main()
     cout << "0x0A0B0C0D";
     return 0;
 }
-
