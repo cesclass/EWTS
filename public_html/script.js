@@ -8,7 +8,7 @@ var xhr = new XMLHttpRequest();
 function main()
 {
     document.getElementById("trame").innerHTML = "...";
-    setInterval(sendXHR, 5000);
+    setInterval(sendXHR, 500);
     xhr.addEventListener("readystatechange",response , false);
 }
 
