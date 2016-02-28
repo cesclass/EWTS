@@ -1,0 +1,33 @@
+body
+{
+    background-color: #303030;
+    color: #E5E5E5;
+    font-family: Arial;
+    font-size: 1.1em;
+}
+
+button
+{
+    border-style: solid;
+    border-width: 2px;
+    border-color: limegreen;
+    border-radius: 6px;
+    background-color: limegreen;
+    color: white;
+    font-size: 1.2em;
+}
+
+button:hover
+{
+    border-style: solid;
+    border-width: 2px;
+    border-color: limegreen;
+    border-radius: 6px;
+    background-color: white;
+    color: limegreen;
+}
+
+button:focus
+{
+    outline: none;
+}
