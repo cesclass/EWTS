@@ -7,7 +7,7 @@ var xhr = new XMLHttpRequest();
 
 function main()
 {
-    document.getElementById("trame").innerHTML = "...";
+    document.getElementById("trame").innerHTML = "Wait...";
     setInterval(sendXHR, 500);  //  Boucle
     xhr.addEventListener("readystatechange",response , false);
 }

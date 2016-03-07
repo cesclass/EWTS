@@ -1,9 +1,16 @@
+/* style.css */
+
 body
 {
     background-color: #303030;
     color: #E5E5E5;
     font-family: Arial;
     font-size: 1.1em;
+}
+
+div
+{
+    margin-left: 10px;
 }
 
 button
