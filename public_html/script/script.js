@@ -1,6 +1,6 @@
 //  script.js
 
-var emplacementCgi = "../cgi-bin/trame.cgi";
+var emplacementCgi = "cgi-bin/trame.cgi";
 var methodSend = "GET";
 var contenueSend = null;
 var xhr = new XMLHttpRequest();

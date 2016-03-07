@@ -27,7 +27,7 @@ button:hover
     color: limegreen;
 }
 
-button:focus
+*:focus
 {
     outline: none;
 }
