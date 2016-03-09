@@ -17,24 +17,41 @@ button
 {
     border-style: solid;
     border-width: 2px;
-    border-color: limegreen;
+    border-color: #0066cc;
     border-radius: 6px;
-    background-color: limegreen;
+    background-color: #0066cc;
     color: white;
     font-size: 1.1em;
+    margin-top: 30px;
+    margin-left: 30px;
 }
 
 button:hover
 {
     border-style: solid;
     border-width: 2px;
-    border-color: limegreen;
+    border-color: #0066cc;
     border-radius: 6px;
     background-color: white;
-    color: limegreen;
+    color: #0066cc;
 }
 
 *:focus
 {
     outline: none;
+}
+
+.tabul
+{
+    margin-left: 30px;
+}
+
+#titre
+{
+    float: left;
+}
+
+#trame
+{
+    clear: both;
 }
