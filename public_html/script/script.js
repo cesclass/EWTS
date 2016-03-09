@@ -32,3 +32,8 @@ function response()
         }
     }
 }
+
+function test()
+{
+    alert("test appel fonction");
+}
