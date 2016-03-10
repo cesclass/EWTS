@@ -2,7 +2,7 @@
 
 body
 {
-    background-color: #303030;
+    background-color: #202020;
     color: #E5E5E5;
     font-family: Arial;
     font-size: 1.1em;
@@ -17,9 +17,9 @@ button
 {
     border-style: solid;
     border-width: 2px;
-    border-color: #0066cc;
+    border-color: #cc0000;
     border-radius: 6px;
-    background-color: #0066cc;
+    background-color: #cc0000;
     color: white;
     font-size: 1.1em;
     margin-top: 30px;
@@ -30,10 +30,11 @@ button:hover
 {
     border-style: solid;
     border-width: 2px;
-    border-color: #0066cc;
+    border-color: #cc0000;
     border-radius: 6px;
     background-color: white;
-    color: #0066cc;
+    color: #cc0000;
+    font-size: 1.1em;
 }
 
 *:focus
@@ -41,17 +42,30 @@ button:hover
     outline: none;
 }
 
-.tabul
-{
-    margin-left: 30px;
-}
-
 #titre
 {
     float: left;
 }
 
-#trame
+#infos
 {
     clear: both;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+td, th
+{
+    padding: 5px 20px 5px 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #cc0000;
+}
+
+th
+{
+    font-weight: bold;
 }

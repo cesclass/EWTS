@@ -1,48 +1,64 @@
 //  script.js
 
-var emplacementCgi = "cgi-bin/json.cgi";
+var url = "cgi-bin/json.cgi";
 var methodSend = "GET";
 var contenueSend = null;
 var xhr = new XMLHttpRequest();
-var jsonOBJ;
-var jsonTXT;
+var cycle = 1000;
+var capteur;
 var datas;
+var nbSend = 0;
+var nbErr = 0;
+var nbTrame = 0;
+var infos = "";
 
 function main()
 {
-    document.getElementById("trame").innerHTML = "Wait...";
-    setInterval(sendXHR, 1000);
-    xhr.addEventListener("readystatechange",response , false);
+    setInterval(infoFonctionnement, 500);
+    setInterval(sendXHR, cycle);
+    xhr.addEventListener("readystatechange", response, false);
 }
 
 function sendXHR()
 {
-    xhr.open(methodSend, emplacementCgi, true);
+    xhr.open(methodSend, url, true);
     xhr.send(contenueSend);
+    nbSend++;
 }
 
 function response()
 {
+    if(xhr.readyState === xhr.DONE && xhr.status !== 200)
+    {
+        nbErr++;
+    }
+    
     if(xhr.readyState === xhr.DONE && xhr.status === 200)
     {
-        jsonTXT = xhr.responseText;
-        if(JSON.parse(jsonTXT) !== jsonOBJ)
+        capteur = JSON.parse(xhr.responseText);
+        datas = "<table> <tr> <th>ID</th> <th>DATAS</th> <th>TRAME</th> </tr> <br />";
+        for(var i = 0; i < capteur.length; i++)
         {
-            jsonOBJ = JSON.parse(xhr.responseText);
-            datas = "";
-            datas += "<tr> <td>ID</td> <span class=\"tabul\" /> <td>DATAS</td> </tr> <br />";
-            for(var i = 0; i < jsonOBJ.Trames.length; i++){
-                datas += "<tr> <td>" + jsonOBJ.Trames[i].id + "</td> <span class=\"tabul\" /> <td>" 
-                    + jsonOBJ.Trames[i].data + "</td> </tr> <br />";
-            }
-            datas += "<br />";
-            /*
-            "<tr> <td>" + jsonOBJ.Trames[0].id + "</td> <span class=\"tabul\" /> <td>" + jsonOBJ.Trames[0].data + "</td> </tr> <br />" +
-            "<tr> <td>" + jsonOBJ.Trames[1].id + "</td> <span class=\"tabul\" /> <td>" + jsonOBJ.Trames[1].data + "</td> </tr> <br />" +
-            "<tr> <td>" + jsonOBJ.Trames[2].id + "</td> <span class=\"tabul\" /> <td>" + jsonOBJ.Trames[2].data + "</td> </tr> <br />" +
-            "<br />";
-            */
-            document.getElementById("trame").innerHTML = datas;
+            datas += "<tr>"
+                    + "<td>" + capteur[i].id.toUpperCase() + "</td>"
+                    + "<td>" + capteur[i].data + "</td>"
+                    + "<td>" + capteur[i].brut.toUpperCase() + "</td>" 
+                    + "</tr>";
         }
+        datas += "<table> <br />";
+        nbTrame++;
+        document.getElementById("datas").innerHTML = datas;
+       
     }
+}
+
+function infoFonctionnement()
+{
+    infos = "";
+    infos += "<table>"
+            + "<tr> <th>SEND</th> <td>" + nbSend + "</td> </tr>"
+            + "<tr> <th>TRAMES</th> <td>" + nbTrame + "</td> </tr>"
+            + "<tr> <th>ERREURS</th> <td>" + nbErr + "</td> </tr>" 
+            + "</table> <br />";
+    document.getElementById("infos").innerHTML = infos;
 }
