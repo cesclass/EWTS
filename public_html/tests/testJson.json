@@ -1,6 +1,18 @@
 
-[
-{ "id":"01", "data":"294" },
-{ "id":"02", "data":"753" },
-{ "id":"03", "data":"618" }
-]
+[{ 
+    "brute":".", 
+    "id":".", 
+    "version":".", 
+    "reserve":".", 
+    "type":".", 
+    "coup":".", 
+    "etat":".", 
+    "U_pile":".", 
+    "U_capa":".", 
+    "temperature":".",
+    "debit":".",
+    "C_inhibition":".",
+    "C_fuite":".",
+    "C_absence":".",
+    "conso":"."
+}]

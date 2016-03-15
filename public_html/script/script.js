@@ -1,64 +1,146 @@
-//  script.js
+//==========================================================//
+//                                                          //
+//  Projet EWTS-rt                                          //
+//  Fichier : script.js                                     //
+//  Emplacement : siteRoot/script/script.js                 //
+//                                                          //
+//  DEV : Cyril ESCLASSAN (cesclass)                        //
+//                                                          //
+//==========================================================//
 
-var url = "cgi-bin/json.cgi";
-var methodSend = "GET";
-var contenueSend = null;
+//  Variables AJAX XMLHTTP
 var xhr = new XMLHttpRequest();
-var cycle = 1000;
-var capteur;
-var datas;
-var nbSend = 0;
-var nbErr = 0;
-var nbTrame = 0;
-var infos = "";
+var url = "cgi-bin/script_cgi.cgi";
+var method = "GET";
+var contentGET = null;
 
-function main()
+
+//  Variables String, JSON (manipulation de données)
+//  Et compteurs de passages pour informations
+var cycle = 2000;           //  Temps entre chaque requêtes
+var boucle = null;          //  ID de la boucle
+var datas = "";             //  String pour les données
+var infos = "";             //  String pour les infos
+var nbRQ = 0;               //  Nombre de requêtes
+var nbTR = 0;               //  Nombre de trames reçus
+var nbTRU = 0;              //  Nombre de trames uniques reçus
+var nbERR = 0;              //  Nombre d'erreurs serveurs
+
+var capteur = [{ 
+    "brute":"", 
+    "id":"", 
+    "version":"", 
+    "reserve":"", 
+    "type":"", 
+    "coup":"", 
+    "etat":"", 
+    "U_pile":"", 
+    "U_capa":"", 
+    "temperature":"",
+    "debit":"",
+    "C_inhibition":"",
+    "C_fuite":"",
+    "C_absence":"",
+    "conso":""
+}];     //  Objet JSON
+
+
+//  Fonction start déclenché par le clic sur le bouton
+//  dans la page HTML
+function start()
 {
-    setInterval(infoFonctionnement, 500);
-    setInterval(sendXHR, cycle);
-    xhr.addEventListener("readystatechange", response, false);
+    sendXHR;    //  Premier Appel au start (pas d'attente due au SetInterval)
+    setInterval(infosRT, 200);
+    boucle = setInterval(sendXHR, cycle);
+    xhr.addEventListener("readystatechange", responseXHR, false);
 }
+
+
 
 function sendXHR()
 {
-    xhr.open(methodSend, url, true);
-    xhr.send(contenueSend);
-    nbSend++;
+    xhr.open(method, url, true);
+    xhr.send(contentGET);
+    nbRQ++;
 }
 
-function response()
+
+
+function responseXHR()
 {
     if(xhr.readyState === xhr.DONE && xhr.status !== 200)
     {
-        nbErr++;
+        nbERR++;
     }
     
     if(xhr.readyState === xhr.DONE && xhr.status === 200)
     {
-        capteur = JSON.parse(xhr.responseText);
-        datas = "<table> <tr> <th>ID</th> <th>DATAS</th> <th>TRAME</th> </tr> <br />";
-        for(var i = 0; i < capteur.length; i++)
+        nbTR++;
+        if(JSON.parse(xhr.responseText) !== capteur)
         {
-            datas += "<tr>"
-                    + "<td>" + capteur[i].id.toUpperCase() + "</td>"
-                    + "<td>" + capteur[i].data + "</td>"
-                    + "<td>" + capteur[i].brut.toUpperCase() + "</td>" 
-                    + "</tr>";
+            capteur = JSON.parse(xhr.responseText);
+            nbTRU++;
+            jsonToInnerHTML;
         }
-        datas += "<table> <br />";
-        nbTrame++;
-        document.getElementById("datas").innerHTML = datas;
-       
     }
 }
 
-function infoFonctionnement()
+
+
+function infosRT()
 {
     infos = "";
     infos += "<table>"
-            + "<tr> <th>SEND</th> <td>" + nbSend + "</td> </tr>"
-            + "<tr> <th>TRAMES</th> <td>" + nbTrame + "</td> </tr>"
-            + "<tr> <th>ERREURS</th> <td>" + nbErr + "</td> </tr>" 
+            + "<tr> <th>Nb de Requêtes</th> <td>" + nbRQ + "</td> </tr>"
+            + "<tr> <th>Trames reçus</th> <td>" + nbTR + "</td> </tr>"
+            + "<tr> <th>Trames uniques</th> <td>" + nbTRU + "</td> </tr>"
+            + "<tr> <th>Erreurs </th> <td>" + nbERR + "</td> </tr>"
+            + "<tr> <th>Intervalle</th> <td>" +  cycle/1000 + "s</td> </tr>"
             + "</table> <br />";
     document.getElementById("infos").innerHTML = infos;
+}
+
+
+
+function jsonToInnerHTML()
+{
+    datas = "<table> <tr>" 
+            + "<th> brute </th>" 
+            + "<th> id </th>" 
+            + "<th> version </th>" 
+            + "<th> reserve </th>" 
+            + "<th> type </th>" 
+            + "<th> coup </th>" 
+            + "<th> etat </th>" 
+            + "<th> U_pile </th>" 
+            + "<th> U_capa </th>" 
+            + "<th> temperature </th>" 
+            + "<th> debit </th>" 
+            + "<th> C_inhibition </th>" 
+            + "<th> C_fuite </th>" 
+            + "<th> C_absence </th>"
+            + "<th> conso </th>"
+            + "</tr> <br />";
+    for(var i = 0; i < capteur.length; i++)
+    {
+        datas += "<tr>"
+                + "<td>" + capteur[i].brute + "</td>" 
+                + "<td>" + capteur[i].id + "</td>" 
+                + "<td>" + capteur[i].version + "</td>" 
+                + "<td>" + capteur[i].reserve + "</td>" 
+                + "<td>" + capteur[i].type + "</td>" 
+                + "<td>" + capteur[i].coup + "</td>" 
+                + "<td>" + capteur[i].etat + "</td>" 
+                + "<td>" + capteur[i].U_pile + "</td>" 
+                + "<td>" + capteur[i].U_capa + "</td>" 
+                + "<td>" + capteur[i].temperature + "</td>" 
+                + "<td>" + capteur[i].debit + "</td>" 
+                + "<td>" + capteur[i].C_inhibition + "</td>" 
+                + "<td>" + capteur[i].C_fuite + "</td>" 
+                + "<td>" + capteur[i].C_absence + "</td>" 
+                + "<td>" + capteur[i].conso + "</td>" 
+                + "</tr>";
+    }
+    datas += "<table> <br />";
+    document.getElementById("datas").innerHTML = datas;
 }
