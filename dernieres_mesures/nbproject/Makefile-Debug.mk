@@ -36,7 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/22515211/SocketServeur.o \
-	${OBJECTDIR}/dernieresMesures.o
+	${OBJECTDIR}/dernieres_mesures.o
 
 
 # C Compiler Flags
@@ -68,10 +68,10 @@ ${OBJECTDIR}/_ext/22515211/SocketServeur.o: ../sockets/SocketServeur.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/22515211/SocketServeur.o ../sockets/SocketServeur.cpp
 
-${OBJECTDIR}/dernieresMesures.o: dernieresMesures.cpp 
+${OBJECTDIR}/dernieres_mesures.o: dernieres_mesures.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dernieresMesures.o dernieresMesures.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dernieres_mesures.o dernieres_mesures.cpp
 
 # Subprojects
 .build-subprojects:

@@ -36,7 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/22515211/SocketServeur.o \
-	${OBJECTDIR}/scriptCGI.o
+	${OBJECTDIR}/script_cgi.o
 
 
 # C Compiler Flags
@@ -68,10 +68,10 @@ ${OBJECTDIR}/_ext/22515211/SocketServeur.o: ../sockets/SocketServeur.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/22515211/SocketServeur.o ../sockets/SocketServeur.cpp
 
-${OBJECTDIR}/scriptCGI.o: scriptCGI.cpp 
+${OBJECTDIR}/script_cgi.o: script_cgi.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scriptCGI.o scriptCGI.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/script_cgi.o script_cgi.cpp
 
 # Subprojects
 .build-subprojects:

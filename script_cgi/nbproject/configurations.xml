@@ -16,7 +16,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>scriptCGI.cpp</itemPath>
+      <itemPath>script_cgi.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -47,7 +47,7 @@
       </item>
       <item path="../sockets/SocketServeur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="scriptCGI.cpp" ex="false" tool="1" flavor2="0">
+      <item path="script_cgi.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -74,7 +74,7 @@
       </item>
       <item path="../sockets/SocketServeur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="scriptCGI.cpp" ex="false" tool="1" flavor2="0">
+      <item path="script_cgi.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>
