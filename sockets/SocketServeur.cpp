@@ -77,9 +77,7 @@ void SocketServeur::shutdownSock(SocketServeur* csock) {
 }
 
 void SocketServeur::closeSock(void) {
-    cout << "Fermeture de la socket..." << endl;
     close(this->sock);
-    cout << "Fermeture de la socket terminé.";
 }
 
 void SocketServeur::connectSock() {

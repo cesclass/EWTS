@@ -43,79 +43,121 @@ int main(int argc, char** argv) {
                 size_t debut = 0, fin;
                 fin = traduite.find("|");
                 
-                cout << "content-type : text/html \r\n\r\n"
-                     << "[" << endl
-                     << "{ \"id\":\"brute\",        \"data\":\"" << maTrame.brute << "\" }," << endl
-                     << "{ \"id\":\"id\",           \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                string envoi = "content-type : text/html \r\n\r\n";
+                envoi += "[{ \r\n";
+                envoi += "\"brute\":\"";
+                        envoi += maTrame.brute; 
+                        envoi += "\", \r\n";
+                        
+                envoi += "\"id\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"version\",      \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"version\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"reserve\",      \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"reserve\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"type\",         \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"type\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"coup\",         \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"coup\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"etat\",         \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"etat\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"U_pile\",       \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"U_pile\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"U_capa\",       \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"U_capa\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"temperature\",  \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"temperature\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"debit\",        \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"debit\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
                 
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"C_inhibition\", \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
+                
+                envoi += "\"C_inhibition\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
+                
+                debut = fin + 1;
+                fin = traduite.find("|", debut);
+                
+                envoi += "\"C_fuite\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";debut = fin + 1;
+                fin = traduite.find("|", debut);
+                
+                debut = fin + 1;
+                fin = traduite.find("|", debut);
+                
+                envoi += "\"C_absence\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\", \r\n";
                         
                 debut = fin + 1;
                 fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"C_fuite\",      \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
                 
-                debut = fin + 1;
-                fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"C_absence\",    \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
-                
-                debut = fin + 1;
-                fin = traduite.find("|", debut);
-                   
-                cout << "{ \"id\":\"conso\",        \"data\":\""  << traduite.substr(debut, fin-debut) << "\" }," << endl;
-                
-                cout << "]" << endl;
-                
-                    //endl;
+                envoi += "\"conso\":\"";
+                        envoi += traduite.substr(debut, fin-debut);
+                        envoi += "\" \r\n";
+                        
+                envoi += "}] \r\n";
+                        
+                cout << envoi;
+             
             } else {
                 cout << "content-type : text/html \r\n\r\n" << endl
                      << "<p>Impossible de se connecter.<p>" << endl

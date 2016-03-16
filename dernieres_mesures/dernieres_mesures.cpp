@@ -44,18 +44,20 @@ int main(int argc, char** argv) {
          */
         sock->parametrage();
         sock->bindSock();
-        
-        if(sock->getError() != SOCKET_ERROR) {
-            sock->listenSock(10);
+        do {
+            if(sock->getError() != SOCKET_ERROR) {
+                sock->listenSock(10);
             
-            if(sock->getSock() != SOCKET_ERROR) {
-                sock->acceptSock(sockC);
-                sock->sendDatas(sockC, &maTrame);
-                sock->shutdownSock(sockC);
+                if(sock->getSock() != SOCKET_ERROR) {
+                    sock->acceptSock(sockC);
+                    sock->sendDatas(sockC, &maTrame);
+                    sock->shutdownSock(sockC);
+                }
             }
-        }
+            
+        } while(true);
         sock->closeSock();
-  }
+    }   
     return 0;
 }
 
@@ -67,7 +69,6 @@ Trame extraction(Trame maTrame) {
      * Author : caron
      */
 
-    sprintf(maTrame.brute, "00161A56810224390B15E80000031D0000000590");
     int position;
 
     for(int i=0; i<6; i++)
