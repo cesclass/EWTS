@@ -24,8 +24,8 @@ var datas = "";             //  String pour les données
 var infos = "";             //  String pour les infos
 var nbRQ = 0;               //  Nombre de requêtes
 var nbTR = 0;               //  Nombre de trames reçus
-var nbTRU = 0;              //  Nombre de trames uniques reçus
 var nbERR = 0;              //  Nombre d'erreurs serveurs
+
 
 var capteur = [{ 
     "brute":"", 
@@ -86,7 +86,6 @@ function responseXHR()
         if(JSON.parse(xhr.responseText) !== capteur)
         {
             capteur = JSON.parse(xhr.responseText);
-            nbTRU++;
             jsonToInnerHTML();
         }
     }
@@ -101,7 +100,6 @@ function infosRT()
     infos += "<table>"
             + "<tr> <th>Nb de Requêtes</th> <td>" + nbRQ + "</td> </tr>"
             + "<tr> <th>Trames reçus</th> <td>" + nbTR + "</td> </tr>"
-        //  + "<tr> <th>Trames uniques</th> <td>" + nbTRU + "</td> </tr>"
             + "<tr> <th>Erreurs </th> <td>" + nbERR + "</td> </tr>"
             + "<tr> <th>Intervalle</th> <td>" +  cycle/1000 + "s</td> </tr>"
             + "</table> <br />";
@@ -153,4 +151,21 @@ function jsonToInnerHTML()
     }
     datas += "<table> <br />";
     document.getElementById("datas").innerHTML = datas;
+}
+
+
+function bonus()
+{
+    var blink = false;
+    setInterval(function()
+    {
+        if(!blink)
+        {
+            document.getElementById("titre").style.color = "#0066ff";
+            blink = true;
+        } else {
+            document.getElementById("titre").style.color = "#E5E5E5";
+            blink = false;
+        }
+    }, 200);
 }

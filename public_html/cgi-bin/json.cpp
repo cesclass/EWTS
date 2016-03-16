@@ -7,8 +7,22 @@ using namespace std;
 int main()
 {
     cout << "Content-Type: application/json \n\r\n\r"; 
-    cout << "[{ \"id\":\"c5\", \"data\":\"294\", \"brut\":\"c500126\" }," <<
-            "{ \"id\":\"d7\", \"data\":\"753\", \"brut\":\"d7002f1\" }," <<
-            "{ \"id\":\"e9\", \"data\":\"618\", \"brut\":\"e90026a\" }]";
+    cout << "[{" <<
+            "\"brute\":\".\"," <<
+            "\"id\":\".\"," <<
+            "\"version\":\".\"," <<
+            "\"reserve\":\".\"," <<
+            "\"type\":\".\"," <<
+            "\"coup\":\".\"," <<
+            "\"etat\":\".\"," <<
+            "\"U_pile\":\".\"," <<
+            "\"U_capa\":\".\"," <<
+            "\"temperature\":\".\"," <<
+            "\"debit\":\".\"," <<
+            "\"C_inhibition\":\".\"," <<
+            "\"C_fuite\":\".\"," <<
+            "\"C_absence\":\".\"," <<
+            "\"conso\":\".\"" <<
+            "}]";
     return 0;
 }
