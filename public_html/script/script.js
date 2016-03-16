@@ -8,6 +8,7 @@
 //                                                          //
 //==========================================================//
 
+
 //  Variables AJAX XMLHTTP
 var xhr = new XMLHttpRequest();
 var url = "cgi-bin/script_cgi.cgi";
@@ -56,7 +57,8 @@ function start()
 }
 
 
-
+//  Fonction sendXHR() déclenché par la fonction start() | (boucle)
+//  Chargée de l'envoie de requêtes XMLHttpRequest
 function sendXHR()
 {
     xhr.open(method, url, true);
@@ -65,7 +67,9 @@ function sendXHR()
 }
 
 
-
+//  Fonction responseXHR() déclenché par événement (xhr.readystatechange)
+//  Chargé de vérifier l'état et le status de xhr ET de convertir la réponse
+//  en JSON pour puis appeler la fonciton jsonToInnerHTML()
 function responseXHR()
 {
     if(xhr.readyState === xhr.DONE && xhr.status !== 200)
@@ -73,6 +77,9 @@ function responseXHR()
         nbERR++;
     }
     
+    //  Si xhr a fini son travail et que le code retourné par le serveur
+    //  est 200, Alors, conversion Reponse JSON --> Objet (capteur)
+    //  ET exécution de la fonction jsonToInnerHTML()
     if(xhr.readyState === xhr.DONE && xhr.status === 200)
     {
         nbTR++;
@@ -80,20 +87,21 @@ function responseXHR()
         {
             capteur = JSON.parse(xhr.responseText);
             nbTRU++;
-            jsonToInnerHTML;
+            jsonToInnerHTML();
         }
     }
 }
 
 
-
+//  Fonction infosRT() déclenché par la fonction start() | (boucle)
+//  Chargé de l'affichage des infos d'exécution
 function infosRT()
 {
     infos = "";
     infos += "<table>"
             + "<tr> <th>Nb de Requêtes</th> <td>" + nbRQ + "</td> </tr>"
             + "<tr> <th>Trames reçus</th> <td>" + nbTR + "</td> </tr>"
-            + "<tr> <th>Trames uniques</th> <td>" + nbTRU + "</td> </tr>"
+        //  + "<tr> <th>Trames uniques</th> <td>" + nbTRU + "</td> </tr>"
             + "<tr> <th>Erreurs </th> <td>" + nbERR + "</td> </tr>"
             + "<tr> <th>Intervalle</th> <td>" +  cycle/1000 + "s</td> </tr>"
             + "</table> <br />";
@@ -101,7 +109,8 @@ function infosRT()
 }
 
 
-
+//  Fonction jsonToInnerHTML() déclenché par responseXHR()
+//  Chargé de l'affichage des valeurs contenues dans l'objet capteur
 function jsonToInnerHTML()
 {
     datas = "<table> <tr>" 
@@ -121,6 +130,7 @@ function jsonToInnerHTML()
             + "<th> C_absence </th>"
             + "<th> conso </th>"
             + "</tr> <br />";
+    
     for(var i = 0; i < capteur.length; i++)
     {
         datas += "<tr>"
