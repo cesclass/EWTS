@@ -1,3 +1,5 @@
+//  OLD SCRIPT
+
 //==========================================================================//
 //                                                                          //
 //  Projet EWTS-rt                                                          //
@@ -9,21 +11,24 @@
 //==========================================================================//
 
 
-var cycleAJAX = 2000;       //  Temps entre chaque requetes AJAX
-var cycleINFO = 400;        //  Temps entre chaque MaJ des infos
-var loopAJAX = null;        //  ID de la boucle AJAX
-var loopINFO = null;        //  ID de la boucle d'info
-var datasHTML = "";         //  String pour les données
-var infosHTML = "";         //  String pour les infos
+//  Variables AJAX XMLHTTP
+var xhr = new XMLHttpRequest();
+var url = "cgi-bin/script_cgi.cgi";
+var method = "GET";
+var contentGET = null;
+
+
+//  Variables String, JSON (manipulation de données)
+//  Et compteurs de passages pour informations
+var cycle = 2000;           //  Temps entre chaque requêtes
+var boucle = null;          //  ID de la boucle
+var datas = "";             //  String pour les données
+var infos = "";             //  String pour les infos
 var nbRQ = 0;               //  Nombre de requêtes
 var nbTR = 0;               //  Nombre de trames reçus
 var nbERR = 0;              //  Nombre d'erreurs serveurs
-var str_start = "";         //  Strinog d'info sur le status d'execution
-var starting = false;       //  Determine si le script est en execution
 
-var debug = null;
 
-//  Objet JSON
 var capteur = [{
     "brute":"", 
     "id":"", 
@@ -40,81 +45,76 @@ var capteur = [{
     "C_fuite":"",
     "C_absence":"",
     "conso":""
-}];
-
-
-$(document).ready(main);
-
-
-
-//  Fonction main déclenché quand le document 
-//  (HTML) a fini son chargement
-function main()
-{
-    infosToHTML();
-    loopINFO = setInterval(infosToHTML, cycleINFO);
-    
-    $("#startBTN").click(start);
-    $("#titre").click(bonus);
-}
+}];     //  Objet JSON
 
 
 //  Fonction start déclenché par le clic sur le bouton
 //  dans la page HTML
 function start()
 {
-    if(!starting)
-    {
-        starting = true;
-        ajaxRequest();
-        loopAJAX = setInterval(ajaxRequest, cycleAJAX);
-    } 
-    else 
-    {
-        starting = false;
-        clearInterval(loopAJAX);
-    }
+    infosRT();
+    sendXHR();  //  Premier Appel au start (pas d'attente due au SetInterval)
+    setInterval(infosRT, 200);
+    boucle = setInterval(sendXHR, cycle);
+    xhr.addEventListener("readystatechange", responseXHR, false);
 }
 
 
-//  Fonction ajaxRequest() déclenché par la fonction start() | (boucle)
-//  Chargée de l'envoie de requêtes AJAX en JQuery
-function ajaxRequest()
+//  Fonction sendXHR() déclenché par la fonction start() | (boucle)
+//  Chargée de l'envoie de requêtes XMLHttpRequest
+function sendXHR()
 {
+    xhr.open(method, url, true);
+    xhr.send(contentGET);
     nbRQ++;
-    $.get("cgi-bin/script_cgi.cgi", null, ajaxResponse);
 }
 
 
-//  Fonction ajaxResponse() declenche en tant que callback 
-//  par l'appel a $.get() dans la fonction ajaxRequest()
-//  Chargé de vérifier le status de la requete AJAX et
-//  de passer l'objet retourné par ajaxRequest() dans un 
-//  objet local. Enfin, appel de la fonction dataToHTML()
-function ajaxResponse(dataAJAX, statusAJAX)
+//  Fonction responseXHR() déclenché par événement (xhr.readystatechange)
+//  Chargé de vérifier l'état et le status de xhr ET de convertir la réponse
+//  en JSON pour puis appeler la fonciton jsonToInnerHTML()
+function responseXHR()
 {
-    debug = statusAJAX;
-    if(statusAJAX === "success")
-    {
-        nbTR++;
-        if(dataAJAX !== capteur)
-        {
-            capteur = dataAJAX;
-            datasToHTML();
-        }
-    }
-    else
+    if(xhr.readyState === xhr.DONE && xhr.status !== 200)
     {
         nbERR++;
     }
+    
+    //  Si xhr a fini son travail et que le code retourné par le serveur
+    //  est 200, Alors, conversion Reponse JSON --> Objet (capteur)
+    //  ET exécution de la fonction jsonToInnerHTML()
+    if(xhr.readyState === xhr.DONE && xhr.status === 200)
+    {
+        nbTR++;
+        if(JSON.parse(xhr.responseText) !== capteur)
+        {
+            capteur = JSON.parse(xhr.responseText);
+            jsonToInnerHTML();
+        }
+    }
 }
 
 
-//  Fonction jsonToInnerHTML() declenche par ajaxResponse()
-//  Charge de l'affichage des valeurs contenues dans l'objet capteur
-function datasToHTML()
+//  Fonction infosRT() déclenché par la fonction start() | (boucle)
+//  Chargé de l'affichage des infos d'exécution
+function infosRT()
 {
-    datasHTML = "<table> <tr>" 
+    infos = "";
+    infos += "<table>"
+            + "<tr> <th> Nb de Requêtes </th> <td>" + nbRQ + "</td> </tr>"
+            + "<tr> <th> Trames reçus </th> <td>" + nbTR + "</td> </tr>"
+            + "<tr> <th> Erreurs </th> <td>" + nbERR + "</td> </tr>"
+            + "<tr> <th> Intervalle </th> <td>" +  cycle/1000 + "s</td> </tr>"
+            + "</table> <br />";
+    document.getElementById("infos").innerHTML = infos;
+}
+
+
+//  Fonction jsonToInnerHTML() déclenché par responseXHR()
+//  Chargé de l'affichage des valeurs contenues dans l'objet capteur
+function jsonToInnerHTML()
+{
+    datas = "<table> <tr>" 
             + "<th> brute </th>" 
             + "<th> id </th>" 
             + "<th> version </th>" 
@@ -134,7 +134,7 @@ function datasToHTML()
     
     for(var i = 0; i < capteur.length; i++)
     {
-        datasHTML += "<tr>"
+        datas += "<tr>"
                 + "<td>" + capteur[i].brute + "</td>" 
                 + "<td>" + capteur[i].id + "</td>" 
                 + "<td>" + capteur[i].version + "</td>" 
@@ -152,51 +152,23 @@ function datasToHTML()
                 + "<td>" + capteur[i].conso + "</td>" 
                 + "</tr>";
     }
-    datasHTML += "<table> <br />";
-    $("#datas").html(datasHTML);
+    datas += "<table> <br />";
+    document.getElementById("datas").innerHTML = datas;
 }
 
 
-//  Fonction infosToHTML() declenche par la fonction start() | (boucle)
-//  Charge de l'affichage des infos d'execution
-function infosToHTML()
-{
-    if(starting)
-    {
-        str_start = "START";
-    }
-    else
-    {
-        str_start = "STOP";
-    }
-    infosHTML = "";
-    infosHTML += "<table>"
-            + "<tr> <th> Status </th> <td>" + str_start + "</td> </tr>"
-            + "<tr> <th> Nb de Requêtes </th> <td>" + nbRQ + "</td> </tr>"
-            + "<tr> <th> Trames reçus </th> <td>" + nbTR + "</td> </tr>"
-            + "<tr> <th> Erreurs </th> <td>" + nbERR + "</td> </tr>"
-            + "<tr> <th> Cycle </th> <td>" +  cycleAJAX/1000 + "s</td> </tr>"
-            + "</table> <br />";
-    $("#infos").html(infosHTML);
-}
-
-
-//  /!\ ATTENTION 
-//  ZONE DE NON PRODUCTIVITE
-//  FONCTION INNUTILE
 function bonus()
 {
     var blink = false;
-    setInterval(function(){
+    setInterval(function()
+    {
         if(!blink)
         {
             $("#titre").css("color", "#0066ff");
             blink = true;
-        } 
-        else
-        {
+        } else {
             $("#titre").css("color", "#E5E5E5");
             blink = false;
         }
-    }, 300);
+    }, 200);
 }
