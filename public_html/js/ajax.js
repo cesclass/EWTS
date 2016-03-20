@@ -1,8 +1,8 @@
 //==========================================================================//
 //                                                                          //
 //  Projet EWTS-rt                                                          //
-//  Fichier : script.js                                                     //
-//  Emplacement : siteRoot/script/script.js                                 //
+//  Fichier : ajax.js                                                       //
+//  Emplacement : /js/ajax.js                                               //
 //                                                                          //
 //  DEV : Cyril ESCLASSAN (cesclass)                                        //
 //                                                                          //
@@ -43,8 +43,7 @@ var capteur = [{
 }];
 
 
-$(document).ready(main);
-
+$(main);
 
 
 //  Fonction main déclenché quand le document 
@@ -54,8 +53,7 @@ function main()
     infosToHTML();
     loopINFO = setInterval(infosToHTML, cycleINFO);
     
-    $("#startBTN").click(start);
-    $("#titre").click(bonus);
+    $("button.startBTN").click(start);
 }
 
 
@@ -153,7 +151,7 @@ function datasToHTML()
                 + "</tr>";
     }
     datasHTML += "<table> <br />";
-    $("#datas").html(datasHTML);
+    $("#js_datasdiv").html(datasHTML);
 }
 
 
@@ -177,26 +175,5 @@ function infosToHTML()
             + "<tr> <th> Erreurs </th> <td>" + nbERR + "</td> </tr>"
             + "<tr> <th> Cycle </th> <td>" +  cycleAJAX/1000 + "s</td> </tr>"
             + "</table> <br />";
-    $("#infos").html(infosHTML);
-}
-
-
-//  /!\ ATTENTION 
-//  ZONE DE NON PRODUCTIVITE
-//  FONCTION INNUTILE
-function bonus()
-{
-    var blink = false;
-    setInterval(function(){
-        if(!blink)
-        {
-            $("#titre").css("color", "#0066ff");
-            blink = true;
-        } 
-        else
-        {
-            $("#titre").css("color", "#E5E5E5");
-            blink = false;
-        }
-    }, 300);
+    $("#js_infosdiv").html(infosHTML);
 }

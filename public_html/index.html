@@ -1,24 +1,105 @@
+<!--
+//==========================================================================//
+//                                                                          //
+//  Projet EWTS-rt                                                          //
+//  Fichier : index.html                                                    //
+//  Emplacement : /                                                         //
+//                                                                          //
+//  DEV : Cyril ESCLASSAN (cesclass)                                        //
+//                                                                          //
+//==========================================================================//
+-->
+
 <!DOCTYPE html>
 
 <html>
     <head>
         <title>EWTS</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style/style.css" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-        <script type="text/javascript" src="script/script.js"></script>
+        <link rel="icon" type="image/png" href="src/ewts_favicon.png" />
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     
     <body>
-        <div id="navigate"></div>
-        <div id="principal">
-            <h1 id="titre" onclick="bonus()">Projet EWTS-rt</h1>
-            <button id="startBTN">Start / Stop</button> 
-            <br />
-            <div id="infos"></div>
+        <div class="navig">
+            <div class="title">
+                <img class="title" title="EWTSrt" alt="EWTSrt" src="src/EWTSrt_logo.png" />
+            </div>
+            <nav>
+                <ul class="navig">
+                    <li class="navig" id="navHOME">HOME</li>
+                    <li class="navig" id="navDATAS">DATAS</li>
+                    <li class="navig" id="navINFOS">INFOS</li>
+                    <li class="navig" id="navABOUT">ABOUT</li>
+                </ul>
+            </nav>
+            <br/>
+            <button class="startBTN">THE BIG RED BUTTON OF NUCLEAR WAR !!!</button>
+            <br/>
+            <footer class="copyR">
+                <p class="copyR">&COPY;2016 EWTSrt</p>
+                <p class="copyR">CARON</p>
+                <p class="copyR">CORNUAU</p>
+                <p class="copyR">DESBARAT</p>
+                <p class="copyR">ESCLASSAN</p>
+            </footer>
+        </div>
+        
+        <div class="master">
             
-            <div id="datas"></div>
+            <div class="page" id="homeDiv">
+                <h2 class="page">Home</h2>
+                <br/>
+                <p> Quam ob rem vita quidem talis fuit vel fortuna vel gloria, ut nihil posset accedere, 
+                    moriendi autem sensum celeritas abstulit; quo de genere mortis difficile dictu est; quid homines 
+                    suspicentur, videtis; hoc vere tamen licet dicere, P. Scipioni ex multis diebus, quos in vita celeberrimos 
+                    laetissimosque viderit, illum diem clarissimum fuisse, cum senatu dimisso domum reductus ad vesperum 
+                    est a patribus conscriptis, populo Romano, sociis et Latinis, pridie quam excessit e vita, 
+                    ut ex tam alto dignitatis gradu ad superos videatur deos potius quam ad inferos pervenisse.</p>
+                
+                <p> Oportunum est, ut arbitror, explanare nunc causam, quae ad exitium praecipitem Aginatium inpulit 
+                    iam inde a priscis maioribus nobilem, ut locuta est pertinacior fama. nec enim super hoc ulla documentorum 
+                    rata est fides.</p>
+                
+                <p>Haec et huius modi quaedam innumerabilia ultrix facinorum impiorum bonorumque praemiatrix aliquotiens 
+                    operatur Adrastia atque utinam semper quam vocabulo duplici etiam Nemesim appellamus: ius quoddam sublime 
+                    numinis efficacis, humanarum mentium opinione lunari circulo superpositum, vel ut definiunt alii, substantialis 
+                    tutela generali potentia partilibus praesidens fatis, quam theologi veteres fingentes Iustitiae filiam ex abdita 
+                    quadam aeternitate tradunt omnia despectare terrena.</p>
+            </div>
+            
+            <div class="page" id="datasDiv">
+                <h2 class="page">Datas</h2>
+                <br/>
+                <div id="js_datasdiv"></div>
+            </div>
+            
+            <div class="page" id="infosDiv">
+                <h2 class="page">Infos</h2>
+                <br/>
+                <div id="js_infosdiv"></div>
+            </div>
+            
+            <div class="page" id="aboutDiv">
+                <h2 class="page">About</h2>
+                <p> Projet EWTSrt</p>
+                <p> Etablissement : Lycee Victor Hugo COLOMIERS 31770</p>
+                <p> Encadrement : M. Olivier COMMENGE</p>
+                <p> Etudiants : </p>
+                <ul>
+                    <li>Dylan CARON (chef de projet)</li>
+                    <li>Yann CORNUAU</li>
+                    <li>Thibaut DESBARAT</li>
+                    <li>Cyril ESCLASSAN</li>
+                </ul>
+            </div>
+            
             <br />
         </div>
+        
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/ajax.js"></script>
+        <script type="text/javascript" src="js/navig.js"></script>
+        
     </body>
 </html>
