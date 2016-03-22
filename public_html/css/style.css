@@ -127,7 +127,12 @@ li.navig
     margin-bottom: 20px;
 }
 
+li.navig:hover
+{
+    cursor: pointer;
+}
 
+/*
 li.navig:hover
 {
     background-color: #66cc00;
@@ -137,7 +142,7 @@ li.navig:hover
     padding-left: 15px;
     cursor: pointer;
 }
-
+*/
 
 footer.copyR
 {
