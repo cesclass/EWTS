@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
                 size_t debut = 0, fin;
                 fin = traduite.find("|");
                 
-                string envoi = "content-type : text/html \r\n\r\n";
+                string envoi = "content-type : application/json \r\n\r\n";
                 envoi += "[{ \r\n";
                 envoi += "\"brute\":\"";
                         envoi += maTrame.brute; 
