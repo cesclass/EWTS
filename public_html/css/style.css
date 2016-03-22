@@ -1,0 +1,180 @@
+/*==========================================================================*/
+/*                                                                          */
+/*  Projet EWTS-rt                                                          */
+/*  Fichier : style.css                                                     */
+/*  Emplacement : /style/style.css                                          */
+/*                                                                          */
+/*  DEV : Cyril ESCLASSAN (cesclass)                                        */
+/*                                                                          */
+/*==========================================================================*/
+
+
+@font-face 
+{
+    font-family: 'kimberley';
+    src: url('../src/font/kimberley.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body
+{
+    background-color: #303030;
+    color: white;
+    font-family: Arial;
+    font-size: 1.1em;
+    margin: 0;
+    padding: 0;
+}
+
+
+button.startBTN
+{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #66cc00;
+    border-radius: 6px;
+    background-color: #66cc00;
+    color: white;
+    font-size: 1.1em;
+    font-family: "kimberley", Arial;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    max-width: 80%;
+    padding: 5px 5px 5px 5px;
+}
+
+
+button.startBTN:hover
+{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #66cc00;
+    border-radius: 6px;
+    background-color: white;
+    color: chartreuse;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+
+*:focus
+{
+    outline: none;
+}
+
+h2.page
+{
+    color: #66cc00;
+    font-size: 3.2em;
+    font-family: "kimberley", Arial;
+}
+
+img.title
+{
+    width: 80%;
+    height: 80%;
+    padding-top: 5%;
+    padding-left: 10%;
+}
+
+
+div.master
+{
+    margin-left: 15.5%;
+    padding-top: 1px;
+}
+
+div.page
+{
+    padding: 0;
+    margin: 0;
+}
+
+
+div.navig
+{
+    position: fixed;
+    float: left;
+    min-height: 100vh;
+    width: 14%;
+    background-color: #151515;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+
+
+ul.navig
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-weight: bold;
+    font-family: "kimberley", Arial;
+}
+
+
+li.navig
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+li.navig:hover
+{
+    cursor: pointer;
+}
+
+/*
+li.navig:hover
+{
+    background-color: #66cc00;
+    border-left-color: #408000;
+    border-left-style: solid;
+    border-left-width: 25px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+*/
+
+footer.copyR
+{
+    padding-top: 20%;
+}
+
+
+p.copyR
+{
+    font-size: 0.65em;
+    text-align: center;
+    color: #8A8A8A;
+}
+
+
+table
+{
+    border-collapse: collapse;
+    background-color: #404040;
+}
+
+
+td, th
+{
+    padding: 5px 20px 5px 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #66cc00;
+}
+
+
+th
+{
+    font-weight: bold;
+}
