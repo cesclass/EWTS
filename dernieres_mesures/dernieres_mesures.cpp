@@ -7,6 +7,8 @@
 
 #include <cstdlib>
 #include "../sockets/SocketServeur.h"
+#include "../recuperateur/Recuperateur.h"
+#include "../trame/Trame.h"
 
 using namespace std;
 

@@ -5,6 +5,12 @@
                    displayName="Header Files"
                    projectFiles="true">
     </logicalFolder>
+    <logicalFolder name="recuperateur"
+                   displayName="recuperateur"
+                   projectFiles="true">
+      <itemPath>../recuperateur/Recuperateur.cpp</itemPath>
+      <itemPath>../recuperateur/Recuperateur.h</itemPath>
+    </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
@@ -17,6 +23,10 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>dernieres_mesures.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="trame" displayName="trame" projectFiles="true">
+      <itemPath>../trame/Trame.cpp</itemPath>
+      <itemPath>../trame/Trame.h</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -32,6 +42,8 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../sockets</Elem>
+    <Elem>../trame</Elem>
+    <Elem>../recuperateur</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -43,9 +55,17 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="../recuperateur/Recuperateur.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../recuperateur/Recuperateur.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../sockets/SocketServeur.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../sockets/SocketServeur.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../trame/Trame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../trame/Trame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="dernieres_mesures.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -70,9 +90,17 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../recuperateur/Recuperateur.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../recuperateur/Recuperateur.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../sockets/SocketServeur.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../sockets/SocketServeur.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../trame/Trame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../trame/Trame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="dernieres_mesures.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -11,6 +11,8 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>../sockets</sourceRootElem>
+                <sourceRootElem>../trame</sourceRootElem>
+                <sourceRootElem>../recuperateur</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

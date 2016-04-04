@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/_ext/5c7ce86/Recuperateur.o \
 	${OBJECTDIR}/_ext/22515211/SocketServeur.o \
+	${OBJECTDIR}/_ext/82a06d6c/Trame.o \
 	${OBJECTDIR}/dernieres_mesures.o
 
 
@@ -63,10 +65,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dernieres_mesures: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dernieres_mesures ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/_ext/5c7ce86/Recuperateur.o: ../recuperateur/Recuperateur.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/5c7ce86
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c7ce86/Recuperateur.o ../recuperateur/Recuperateur.cpp
+
 ${OBJECTDIR}/_ext/22515211/SocketServeur.o: ../sockets/SocketServeur.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/22515211
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/22515211/SocketServeur.o ../sockets/SocketServeur.cpp
+
+${OBJECTDIR}/_ext/82a06d6c/Trame.o: ../trame/Trame.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/82a06d6c
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/82a06d6c/Trame.o ../trame/Trame.cpp
 
 ${OBJECTDIR}/dernieres_mesures.o: dernieres_mesures.cpp 
 	${MKDIR} -p ${OBJECTDIR}
