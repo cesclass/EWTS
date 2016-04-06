@@ -6,13 +6,14 @@
  */
 
 #include <cstdlib>
+#include "string.h"
 #include "../sockets/SocketServeur.h"
 #include "../recuperateur/Recuperateur.h"
 #include "../trame/Trame.h"
 
 using namespace std;
 
-struct Trame
+struct laTrame
 {
     char brute[256] = {0};
     char traduite[256] = {0};
@@ -21,7 +22,7 @@ struct Trame
 /*
  * Mes fonctions
  */
-Trame extraction(Trame maTrame);
+laTrame extraction(laTrame maTrame);
 
 int main(int argc, char** argv) {
     /*
@@ -34,7 +35,7 @@ int main(int argc, char** argv) {
      * Création de la trame à envoyer.
      */
     
-    Trame maTrame;
+    laTrame maTrame;
     sprintf(maTrame.brute, "00161A56810224390B15E80000031D0000000590");
     maTrame = extraction(maTrame);
     
@@ -63,7 +64,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-Trame extraction(Trame maTrame) {
+laTrame extraction(laTrame maTrame) {
     /*
      * Extraction des données de la trame et conversion des données 
      * hexadécimales dans la trame.

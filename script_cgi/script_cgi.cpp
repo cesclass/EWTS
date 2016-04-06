@@ -25,12 +25,12 @@ int main(int argc, char** argv) {
     /*
      * Création du conteneur de la trame à recevoir.
      */
-    struct Trame
+    struct laTrame
     {
         char brute[256] = {0};
         char traduite[256] = {0};
     };
-    Trame maTrame;
+    laTrame maTrame;
     
     
     if(sock->getSock() != INVALID_SOCKET) {
