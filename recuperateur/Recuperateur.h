@@ -1,25 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   Recuperateur.h
- * Author: dylan
+ * Author: cornuau
  *
- * Created on 4 avril 2016, 12:04
+ * Created on 4 avril 2016, 12:36
  */
 
 #ifndef RECUPERATEUR_H
 #define RECUPERATEUR_H
+#include <stdio.h>
+#include <termios.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include <fstream>
+#include <iostream>
+#include "../trame/Trame.h"
+#include "SerialPort.h"
+#include <sstream>
+#include <iomanip>
+#include <SerialStream.h>
+#include <cstdlib>
+
+using namespace std;
+using namespace LibSerial;
 
 class Recuperateur {
 public:
     Recuperateur();
-    Recuperateur(const Recuperateur& orig);
-    virtual ~Recuperateur();
+    ~Recuperateur();
+    void ouvrirPort();
+    void configurerPort(string portName, int baudRate);
+    void recupererTrame(Trame maTrame);
+    void inspectionRS232();
 private:
+    int m_RecuperationTrame;
+    char m_StockageTrame[256];
+    int m_PortSerie;
 
 };
 
