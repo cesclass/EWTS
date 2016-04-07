@@ -1,27 +1,31 @@
 //==========================================================================//
 //                                                                          //
 //  Projet EWTS-rt                                                          //
-//  Fichier : ajax.js                                                       //
-//  Emplacement : /js/ajax.js                                               //
+//  Fichier : core.js                                                       //
+//  Emplacement : /js/core.js                                               //
 //                                                                          //
 //  DEV : Cyril ESCLASSAN (cesclass)                                        //
 //                                                                          //
 //==========================================================================//
 
 
+//  Variables de Debug
+var debugCycle = 400;        //  Temps entre chaque MaJ des infos
+var debugLoop = null;        //  ID de la boucle d'info
+var debugHTML = "";         //  String pour les infos
+var d_nbRQ = 0;               //  Nombre de requêtes
+var d_nbTR = 0;               //  Nombre de trames reçus
+var d_nbERR = 0;              //  Nombre d'erreurs serveurs
+var debug = null;           //  Variable servant au Debug...
+
+
+//  Variable de fonctionnement
 var cycleAJAX = 2000;       //  Temps entre chaque requetes AJAX
-var cycleINFO = 400;        //  Temps entre chaque MaJ des infos
 var loopAJAX = null;        //  ID de la boucle AJAX
-var loopINFO = null;        //  ID de la boucle d'info
 var datasHTML = "";         //  String pour les données
-var infosHTML = "";         //  String pour les infos
-var nbRQ = 0;               //  Nombre de requêtes
-var nbTR = 0;               //  Nombre de trames reçus
-var nbERR = 0;              //  Nombre d'erreurs serveurs
 var str_start = "";         //  Strinog d'info sur le status d'execution
 var starting = false;       //  Determine si le script est en execution
 
-var debug = null;
 
 //  Objet JSON
 var capteur = [{
@@ -50,36 +54,29 @@ $(main);
 //  (HTML) a fini son chargement
 function main()
 {
-    infosToHTML();
-    loopINFO = setInterval(infosToHTML, cycleINFO);
-    
-    $("button.startBTN").click(start);
-}
-
-
-//  Fonction start déclenché par le clic sur le bouton
-//  dans la page HTML
-function start()
-{
+    debugToHTML();
+    loopINFO = setInterval(debugToHTML, debugCycle);
     if(!starting)
     {
+        str_start = "START"; // debug
         starting = true;
         ajaxRequest();
         loopAJAX = setInterval(ajaxRequest, cycleAJAX);
     } 
     else 
     {
+        str_start = "STOP"; // debug
         starting = false;
         clearInterval(loopAJAX);
     }
 }
 
 
-//  Fonction ajaxRequest() déclenché par la fonction start() | (boucle)
+//  Fonction ajaxRequest() déclenché par la fonction main() | (boucle)
 //  Chargée de l'envoie de requêtes AJAX en JQuery
 function ajaxRequest()
 {
-    nbRQ++;
+    d_nbRQ++; // debug
     $.get("cgi-bin/script_cgi.cgi", null, ajaxResponse);
 }
 
@@ -91,10 +88,10 @@ function ajaxRequest()
 //  objet local. Enfin, appel de la fonction dataToHTML()
 function ajaxResponse(dataAJAX, statusAJAX)
 {
-    debug = statusAJAX;
+    debug = statusAJAX; // debug
     if(statusAJAX === "success")
     {
-        nbTR++;
+        d_nbTR++; // debug
         if(dataAJAX !== capteur)
         {
             capteur = dataAJAX;
@@ -103,7 +100,7 @@ function ajaxResponse(dataAJAX, statusAJAX)
     }
     else
     {
-        nbERR++;
+        d_nbERR++; // debug
     }
 }
 
@@ -150,30 +147,23 @@ function datasToHTML()
                 + "<td>" + capteur[i].conso + "</td>" 
                 + "</tr>";
     }
+    
     datasHTML += "<table> <br />";
     $("#js_datasdiv").html(datasHTML);
 }
 
 
-//  Fonction infosToHTML() declenche par la fonction start() | (boucle)
+//  Fonction infosToHTML() declenche par la fonction main() | (boucle)
 //  Charge de l'affichage des infos d'execution
-function infosToHTML()
+function debugToHTML()
 {
-    if(starting)
-    {
-        str_start = "START";
-    }
-    else
-    {
-        str_start = "STOP";
-    }
-    infosHTML = "";
-    infosHTML += "<table>"
+    debugHTML = "";
+    debugHTML += "<table>"
             + "<tr> <th> Status </th> <td>" + str_start + "</td> </tr>"
-            + "<tr> <th> Nb de Requêtes </th> <td>" + nbRQ + "</td> </tr>"
-            + "<tr> <th> Trames reçus </th> <td>" + nbTR + "</td> </tr>"
-            + "<tr> <th> Erreurs </th> <td>" + nbERR + "</td> </tr>"
+            + "<tr> <th> Nb de Requêtes </th> <td>" + d_nbRQ + "</td> </tr>"
+            + "<tr> <th> Trames reçus </th> <td>" + d_nbTR + "</td> </tr>"
+            + "<tr> <th> Erreurs </th> <td>" + d_nbERR + "</td> </tr>"
             + "<tr> <th> Cycle </th> <td>" +  cycleAJAX/1000 + "s</td> </tr>"
             + "</table> <br />";
-    $("#js_infosdiv").html(infosHTML);
+    $("#js_infosdiv").html(debugHTML);
 }

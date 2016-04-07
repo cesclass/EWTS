@@ -53,7 +53,6 @@ function resetNavStyle()
         backgroundColor: "transparent",
         borderLeftStyle: "none",
         paddingLeft: "40px",
-        fontSize: "1.1em",
         textShadow: "none"
     });
     
@@ -65,12 +64,11 @@ function selectNavStyle(select)
     resetNavStyle();
     
     $(select).css({
-        backgroundColor: "#66cc00",
-        borderLeftColor: "#408000",
+        backgroundColor: "#3399FF",
+        borderLeftColor: "#0066CC",
         borderLeftStyle: "solid",
         borderLeftWidth: "25px",
         paddingLeft: "15px",
-        fontSize: "1.2em",
         textShadow: "0px 0px 2px white"
     });
     

@@ -1,4 +1,4 @@
-//  trame.cpp (trame.cgi)
+//  json.cpp (script_cgi.cgi)
 
 #include <iostream>
 
@@ -26,3 +26,4 @@ int main()
             "}]";
     return 0;
 }
+
