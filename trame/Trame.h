@@ -8,6 +8,11 @@
 #ifndef TRAME_H
 #define TRAME_H
 
+#include <string.h>
+#include <iostream>
+
+using namespace std;
+
 class Trame {
 public:
     /*

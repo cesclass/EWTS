@@ -96,6 +96,71 @@ bool Trame::traduire() {
 }
     
 void Trame::sendTrame() {
+    string envoi = "content-type : application/json \r\n\r\n";
+    envoi += "[{ \r\n";
     
+    envoi += "\"brute\":\"";
+                        envoi += this->m_brute; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"id\":\"";
+                        envoi += this->m_id; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"version\":\"";
+                        envoi += this->m_version; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"reserve\":\"";
+                        envoi += this->m_reserve; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"type\":\"";
+                        envoi += this->m_type; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"coup\":\"";
+                        envoi += this->m_coup; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"etat\":\"";
+                        envoi += this->m_etat; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"U_pile\":\"";
+                        envoi += this->m_u_pile; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"U_capa\":\"";
+                        envoi += this->m_u_capa; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"temperature\":\"";
+                        envoi += this->m_temperature; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"debit\":\"";
+                        envoi += this->m_debit; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"C_inhibition\":\"";
+                        envoi += this->m_c_inhibition; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"C_fuite\":\"";
+                        envoi += this->m_c_fuite; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"C_absence\":\"";
+                        envoi += this->m_c_absence; 
+                        envoi += "\", \r\n";
+                        
+    envoi += "\"conso\":\"";
+                        envoi += this->m_conso; 
+                        envoi += "\" \r\n";
+                        
+    envoi += "}] \r\n";
+                        
+    cout << envoi;
 }
 
