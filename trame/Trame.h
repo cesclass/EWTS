@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   Trame.h
  * Author: dylan
@@ -16,11 +10,46 @@
 
 class Trame {
 public:
+    /*
+     * Constructeur
+     */
     Trame();
-    Trame(const Trame& orig);
-    virtual ~Trame();
+    
+    /*
+     * Destructeur
+     */
+    ~Trame();
+    
+    /*
+     * Méthodes publiques
+     */
+    void stockTrame(char trameBrute[256]);
+    bool trier();
+    bool traduire();
+    void sendTrame();
+    
+    
+    
 private:
-
+    /*
+     * Attributs privés
+     */
+    char m_brute[256];
+    char m_id[16];
+    char m_version[16];
+    char m_reserve[16];
+    char m_type[16];
+    char m_coup[16];
+    char m_etat[16];
+    char m_u_pile[16];
+    char m_u_capa[16];
+    char m_temperature[16];
+    char m_debit[16];
+    char m_c_inhibition[16];
+    char m_c_fuite[16];
+    char m_c_absence[16];
+    char m_conso[16];
+        
 };
 
 #endif /* TRAME_H */

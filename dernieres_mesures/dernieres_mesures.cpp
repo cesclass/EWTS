@@ -90,6 +90,7 @@ laTrame extraction(laTrame maTrame) {
     }
     position++;
     maTrame.traduite[position+1] = '|';
+    /**********/
     
     maTrame.traduite[position+2] = maTrame.brute[position];
     position++;
@@ -98,7 +99,8 @@ laTrame extraction(laTrame maTrame) {
     maTrame.traduite[position+3] = maTrame.brute[position];
     position++;
     maTrame.traduite[position+3] = '|';
-
+    /*********************/
+    
     maTrame.traduite[position+4] = maTrame.brute[position];
     position++;
     maTrame.traduite[position+4] = '|';
@@ -106,6 +108,7 @@ laTrame extraction(laTrame maTrame) {
     maTrame.traduite[position+5] = maTrame.brute[position];
     position++;
     maTrame.traduite[position+5] = '|';
+    /*********************/
 
     for(int i=position; i<14; i++)
     {
