@@ -12,7 +12,7 @@
 @font-face 
 {
     font-family: 'esphimere';
-    src: url('../src/font/esphimere.otf') format('otf');
+    src: url('../src/font/esphimere.ttf') format('TrueType');
     font-weight: normal;
     font-style: normal;
 }
@@ -21,9 +21,9 @@
 body
 {
     background-color: #CCCCCC;
-    color: black;
+    color: #161616;
     font-family: Arial;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     margin: 0;
     padding: 0;
 }
@@ -37,24 +37,37 @@ body
 
 h2.page
 {
+    margin-left: 0.5rem;
     color: #3399FF;
-    font-size: 3.2em;
+    text-shadow :  
+        -1px -1px 0 #0066CC,
+        1px 1px 0 #0066CC,
+        1px -1px 0 #0066CC,
+        -1px 1px 0 #0066CC;
+    font-size: 3.5rem;
     font-family: "esphimere", Arial;
 }
 
 
-img.title
+h1.title
 {
-    width: 80%;
-    height: 80%;
-    padding-top: 5%;
-    padding-left: 10%;
+    margin-top: 30px;
+    text-align: center;
+    color: #3399FF;
+    text-shadow :  
+        -1px -1px 0 #0066CC,
+        1px 1px 0 #0066CC,
+        1px -1px 0 #0066CC,
+        -1px 1px 0 #0066CC;
+    font-weight: bold;
+    font-family: "esphimere", Arial;
+    font-size: 3.8em;
 }
 
 
 div.master
 {
-    margin-left: 15.5%;
+    margin-left: 290px;
     padding-top: 1px;
 }
 
@@ -63,6 +76,7 @@ div.page
 {
     padding: 0;
     margin: 0;
+    margin-top: -7px
 }
 
 
@@ -72,7 +86,7 @@ div.navig
     position: fixed;
     float: left;
     min-height: 100vh;
-    width: 14%;
+    width: 270px;
     background-color: #555555;
     margin-top: 0px;
     margin-left: 0px;
@@ -85,6 +99,7 @@ ul.navig
     margin: 0;
     padding: 0;
     list-style-type: none;
+    font-size: 1.2em;
     font-weight: bold;
     font-family: "esphimere", Arial;
 }
@@ -92,35 +107,17 @@ ul.navig
 
 li.navig
 {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     padding-left: 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 
 li.navig:hover
 {
     cursor: pointer;
-}
-
-/*
-li.navig:hover
-{
-    background-color: #66cc00;
-    border-left-color: #408000;
-    border-left-style: solid;
-    border-left-width: 25px;
-    padding-left: 15px;
-    cursor: pointer;
-}
-*/
-
-
-footer.copyR
-{
-    padding-top: 20%;
 }
 
 
@@ -144,3 +141,27 @@ th
 {
     font-weight: bold;
 }
+
+
+button
+{
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    background-color: #3399FF;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #3399FF;
+    border-width: 2px;
+    border-radius: 8px;
+}
+
+
+button:hover
+{
+    background-color: #0066CC;
+    border-color: #0066CC;
+    cursor: pointer;
+}
+

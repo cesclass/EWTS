@@ -10,12 +10,12 @@
 
 
 //  Variables de Debug
-var debugCycle = 400;        //  Temps entre chaque MaJ des infos
-var debugLoop = null;        //  ID de la boucle d'info
+var debugCycle = 400;       //  Temps entre chaque MaJ des infos
+var debugLoop = null;       //  ID de la boucle d'info
 var debugHTML = "";         //  String pour les infos
-var d_nbRQ = 0;               //  Nombre de requêtes
-var d_nbTR = 0;               //  Nombre de trames reçus
-var d_nbERR = 0;              //  Nombre d'erreurs serveurs
+var d_nbRQ = 0;             //  Nombre de requêtes
+var d_nbTR = 0;             //  Nombre de trames reçus
+var d_nbERR = 0;            //  Nombre d'erreurs serveurs
 var debug = null;           //  Variable servant au Debug...
 
 
@@ -48,14 +48,15 @@ var capteur = [{
 
 
 $(main);
+$(debugging);
 
 
 //  Fonction main déclenché quand le document 
 //  (HTML) a fini son chargement
 function main()
 {
-    debugToHTML();
-    loopINFO = setInterval(debugToHTML, debugCycle);
+    //  Start des fonctions de debugs
+    
     if(!starting)
     {
         str_start = "START"; // debug
@@ -89,18 +90,28 @@ function ajaxRequest()
 function ajaxResponse(dataAJAX, statusAJAX)
 {
     debug = statusAJAX; // debug
-    if(statusAJAX === "success")
+    if(statusAJAX !== "success")
+    {
+        d_nbERR++; // debug
+    }
+    else
     {
         d_nbTR++; // debug
+        
+        //  Essaie de convertir les donnees json en objet
+        //  si ce n'est pas deja fait...
+        //  Permet le fonctionnement sour Chrome et Firefox
+        try
+        {
+            dataAJAX = JSON.parse(dataAJAX);
+        } 
+        catch(e) {}
+        
         if(dataAJAX !== capteur)
         {
             capteur = dataAJAX;
             datasToHTML();
         }
-    }
-    else
-    {
-        d_nbERR++; // debug
     }
 }
 
@@ -149,21 +160,66 @@ function datasToHTML()
     }
     
     datasHTML += "<table> <br />";
-    $("#js_datasdiv").html(datasHTML);
+    $("#div_js_mesures").html(datasHTML);
 }
 
+//==============================================//
+//                                              //
+//          /!\ Debug Zone /!\                  //
+//          /!\  Keep Out  /!\                  //
+//                                              //
+//==============================================//
 
-//  Fonction infosToHTML() declenche par la fonction main() | (boucle)
-//  Charge de l'affichage des infos d'execution
+
 function debugToHTML()
 {
     debugHTML = "";
     debugHTML += "<table>"
-            + "<tr> <th> Status </th> <td>" + str_start + "</td> </tr>"
+            + '<tr> <th> Status </th> <td id="td_status">' + str_start + "</td> </tr>"
             + "<tr> <th> Nb de Requêtes </th> <td>" + d_nbRQ + "</td> </tr>"
             + "<tr> <th> Trames reçus </th> <td>" + d_nbTR + "</td> </tr>"
             + "<tr> <th> Erreurs </th> <td>" + d_nbERR + "</td> </tr>"
             + "<tr> <th> Cycle </th> <td>" +  cycleAJAX/1000 + "s</td> </tr>"
             + "</table> <br />";
-    $("#js_infosdiv").html(debugHTML);
+    $("#div_js_debug").html(debugHTML);
+    
+    
+    if(starting){
+        $("#td_status").css({
+            backgroundColor: "#66FF33",
+            color: "#FFFFFF",
+            fontWeight: "bold"
+        });
+        
+    } 
+    else
+    {
+        $("#td_status").css({
+            backgroundColor: "#151515",
+            color: "#FFFFFF",
+            fontWeight: "bold"
+        });
+    }
+}
+
+
+function debugging()
+{
+    debugToHTML();
+    loopINFO = setInterval(debugToHTML, debugCycle);
+    $("button#d_button").click(function(){
+        if(!starting)
+        {
+            str_start = "START"; // debug
+            starting = true;
+            ajaxRequest();
+            loopAJAX = setInterval(ajaxRequest, cycleAJAX);
+        } 
+        else 
+        {
+            str_start = "STOP"; // debug
+            starting = false;
+            clearInterval(loopAJAX);
+        }
+    });
 }

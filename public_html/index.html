@@ -22,23 +22,21 @@
     
     <body>
         <div class="navig">
-            <div class="title">
-                <img class="title" title="EWTSrt" alt="EWTSrt" src="src/EWTSrt_logo.png" />
-            </div>
+            <h1 class="title">EWTS.rt</h1>
             <nav>
                 <ul class="navig">
-                    <li class="navig" id="navHOME">ACCUEIL</li>
-                    <li class="navig" id="navDATAS">MESURES</li>
-                    <li class="navig" id="navINFOS">&lsaquo;debug&rsaquo;</li>
-                    <li class="navig" id="navABOUT">A PROPOS</li>
+                    <li class="navig" id="nav_accueil">ACCUEIL</li>
+                    <li class="navig" id="nav_mesures">MESURES</li>
+                    <li class="navig" id="nav_debug">&lsaquo;debug&rsaquo;</li>
+                    <li class="navig" id="nav_a-propos">A PROPOS</li>
                 </ul>
             </nav>
         </div>
         
         <div class="master">
             
-            <div class="page" id="homeDiv">
-                <h2 class="page">Home</h2>
+            <div class="page" id="div_accueil">
+                <h2 class="page">Accueil</h2>
                 <br/>
                 <p> Quam ob rem vita quidem talis fuit vel fortuna vel gloria, ut nihil posset accedere, 
                     moriendi autem sensum celeritas abstulit; quo de genere mortis difficile dictu est; quid homines 
@@ -58,29 +56,42 @@
                     quadam aeternitate tradunt omnia despectare terrena.</p>
             </div>
             
-            <div class="page" id="datasDiv">
-                <h2 class="page">Datas</h2>
+            <div class="page" id="div_mesures">
+                <h2 class="page">Mesures</h2>
                 <br/>
-                <div id="js_datasdiv"></div>
+                <div id="div_js_mesures"></div>
+                
+                <div class="capt_navig">
+                    <nav>
+                        <p id="p_capt_eau">EAU</p>
+                        <ul id="ul_capt_eau"></ul>
+                        <p id="p_capt_elec">ELECTRICITE</p>
+                        <ul id="ul_capt_elec"></ul>
+                        <p id="p_capt_gaz">GAZ</p>
+                        <ul id="ul_capt_gaz"></ul>
+                    </nav>
+                </div>
             </div>
             
-            <div class="page" id="infosDiv">
-                <h2 class="page">Infos</h2>
+            <div class="page" id="div_debug">
+                <h2 class="page">&lsaquo;debug&rsaquo;</h2>
                 <br/>
-                <div id="js_infosdiv"></div>
+                <button id="d_button">Start/Stop</button>
+                <br/>
+                <div id="div_js_debug"></div>
             </div>
             
-            <div class="page" id="aboutDiv">
-                <h2 class="page">About</h2>
-                <p> Projet EWTSrt</p>
-                <p> Etablissement : Lycee Victor Hugo COLOMIERS 31770</p>
+            <div class="page" id="div_a-propos">
+                <h2 class="page">A Propos</h2>
+                <p> Projet EWTS.rt</p>
+                <p> Etablissement : Lycee d'enseignement General et Technologique International Victor Hugo COLOMIERS 31770</p>
                 <p> Encadrement : M. Olivier COMMENGE</p>
                 <p> Etudiants : </p>
                 <ul>
-                    <li>Dylan CARON (chef de projet)</li>
-                    <li>Yann CORNUAU</li>
-                    <li>Thibaut DESBARATS</li>
-                    <li>Cyril ESCLASSAN</li>
+                    <li>Dylan CARON (team leader)</li>
+                    <li>Yann CORNUAU (docs writer)</li>
+                    <li>Thibaut DESBARATS (fat player)</li>
+                    <li>Cyril ESCLASSAN (debugger)</li>
                 </ul>
             </div>
             
