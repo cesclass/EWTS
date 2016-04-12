@@ -10,6 +10,7 @@
 
 char maTrame[256];
 string portName();
+//SerialStream serial_port ("/dev/ttyUSB0");
 
 Recuperateur::Recuperateur(){                                //constructeur
     
@@ -52,41 +53,42 @@ void Recuperateur::configurerPort(string portName, int baudRate){
     
     serial_port.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_NONE);  //contrôle d'échange
     if ( ! serial_port.good() )
-     {
+    {
          std::cerr << "ERREUR ! Impossible d'utiliser le contrôle de flux matériel. " << std::endl;
          exit(1) ;
-     }
+    }
 }  
 
 void Recuperateur::recupererTrame(Trame maTrame){
     
     
-    /*const int BUFFER_SIZE = 256;
+    const int BUFFER_SIZE = 256;
     char input_buffer[BUFFER_SIZE];
     for (int i=0; i<BUFFER_SIZE; i++)
         {
             input_buffer[i] = i;
         }
     cout << "Lecture sur le port série ! " << endl;
-     */
+     
     
     if(serial_port.IsOpen()){
-        serial_port.read();
+        serial_port.read(input_buffer, BUFFER_SIZE);
     }
     else{
         cout << "Erreur de lecture !" << endl;
     }
    
-     while( serial_port.rdbuf()->in_avail() == 0 )
-     {
-    
-     }
-     while( serial_port.rdbuf()->in_avail() == 0 )
-     {
-         usleep(100) ;
-     }
-
-/*
+    while( serial_port.rdbuf()->in_avail() == 0 )
+    {
+        for(int i=0; i<BUFFER_SIZE; ++i){
+           const int BUFFER_SIZE = 256 ; 
+           char output_buffer[BUFFER_SIZE] ; 
+           output_buffer[i] = i ;
+           serial_port.write(output_buffer, BUFFER_SIZE);
+          // cout << "La trame est la suivante: " << endl;
+           }
+    }
+    /*
      char out_buf[] = "Vérifier !";
      serial_port.write(Trame, 5);
      while( 1  )
