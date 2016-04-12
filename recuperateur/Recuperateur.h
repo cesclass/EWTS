@@ -14,6 +14,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <fstream>
+#include <string>
 #include <iostream>
 #include "../trame/Trame.h"
 #include "SerialPort.h"
@@ -24,6 +25,7 @@
 
 using namespace std;
 using namespace LibSerial;
+SerialStream serial_port;
 
 class Recuperateur {
 public:
@@ -37,6 +39,8 @@ private:
     int m_RecuperationTrame;
     char m_StockageTrame[256];
     int m_PortSerie;
+    int msTimeout;
+    int numOfBytes;
 
 };
 

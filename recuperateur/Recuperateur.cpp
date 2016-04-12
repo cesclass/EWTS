@@ -10,55 +10,95 @@
 
 char maTrame[256];
 string portName();
-SerialPort transTrame1("/dev/ttyUSB0");
-    
+
 Recuperateur::Recuperateur(){                                //constructeur
     
 }
 
 void Recuperateur::ouvrirPort(){
-    
-    transTrame1.Open();                 //ouverture du port série RS232                  
+    serial_port.Open("/dev/ttyUSB0");                 //ouverture du port série RS232
     
 }
 
 void Recuperateur::configurerPort(string portName, int baudRate){
+    serial_port.SetBaudRate(SerialStreamBuf::BAUD_19200);       //nombre de bauds
     
-    transTrame1.SetBaudRate(SerialPort::BAUD_19200);       //nombre de bauds
-    transTrame1.SetCharSize(SerialPort::CHAR_SIZE_8);       //taille
-    transTrame1.SetParity(SerialPort::PARITY_NONE);         //parité
-    transTrame1.SetNumOfStopBits(SerialPort::STOP_BITS_1);  //bit de stop
-    transTrame1.SetFlowControl(SerialPort::FLOW_CONTROL_NONE);  //contrôle d'échange
+     if ( ! serial_port.good() )
+     {
+         std::cerr << "ERREUR ! Impossible de définir la vitesse de transmission. " <<  std::endl;
+         exit(1) ;
+     }
     
+    serial_port.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);            //taille
+     if ( ! serial_port.good() )
+     {
+         std::cerr << "ERREUR ! Impossible de définir la talle des caractères. " <<  std::endl;
+         exit(1) ;
+     }
+
+    serial_port.SetParity(SerialStreamBuf::PARITY_NONE);             //parité
+     if ( ! serial_port.good() )
+     {
+         std::cerr << "ERREUR ! Impossible de désactiver la parité. " <<  std::endl ;
+         exit(1) ;
+     }
+    
+    serial_port.SetNumOfStopBits(1);                                 //bit de sto
+    if ( ! serial_port.good() )
+     {
+         std::cerr << "ERREUR ! Impossible de définir le nombre de bits de stop. " << std::endl;
+         exit(1) ;
+     }
+    
+    serial_port.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_NONE);  //contrôle d'échange
+    if ( ! serial_port.good() )
+     {
+         std::cerr << "ERREUR ! Impossible d'utiliser le contrôle de flux matériel. " << std::endl;
+         exit(1) ;
+     }
 }  
 
 void Recuperateur::recupererTrame(Trame maTrame){
     
     
-    const int BUFFER_SIZE = 256;
-    char output_buffer[BUFFER_SIZE];
-    for (int i=0; i<BUFFER_SIZE; i++)
-    {
-        output_buffer[i] = i;
-    }
-    transTrame1.Write(output_buffer, BUFFER_SIZE);
-            
-    const int BUFFER_SIZE = 256;;
+    /*const int BUFFER_SIZE = 256;
     char input_buffer[BUFFER_SIZE];
-    transTrame1.Read(SerialPort, input_buffer, BUFFER_SIZE);
+    for (int i=0; i<BUFFER_SIZE; i++)
+        {
+            input_buffer[i] = i;
+        }
+    cout << "Lecture sur le port série ! " << endl;
+     */
     
+    if(serial_port.IsOpen()){
+        serial_port.read();
+    }
+    else{
+        cout << "Erreur de lecture !" << endl;
+    }
+   
+     while( serial_port.rdbuf()->in_avail() == 0 )
+     {
     
-   // ifstream laTrame("maTrame.txt" ,ios::in);           //on ouvre le fichier en lecture
-   // if(laTrame)                                //si l'ouverture à réussi
-        //instructions à faire
-        //m_StockageTrame = Trame.read(transTrame1);        //on lit la trame
-   // else
-  //  {
-    //    cerr << "Impossible de stocker la trame ! " << endl;    //cerr qui correspond à la sortie 
-                                                                //standard d'erreur non tamponné 
-   // }
-//}
+     }
+     while( serial_port.rdbuf()->in_avail() == 0 )
+     {
+         usleep(100) ;
+     }
+
+/*
+     char out_buf[] = "Vérifier !";
+     serial_port.write(Trame, 5);
+     while( 1  )
+     {
+         char next_byte;
+         serial_port.get(next_byte);
+         std::cerr << next_byte;
+     }
+     std::cerr << std::endl ;
+     return EXIT_SUCCESS ; */
 }
+    
 
 void Recuperateur::inspectionRS232(){
     
@@ -68,4 +108,3 @@ void Recuperateur::inspectionRS232(){
 Recuperateur::~Recuperateur(){                      //destructeur
     
 }
-
