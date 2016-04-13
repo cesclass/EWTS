@@ -7,6 +7,7 @@
 
 #ifndef RECUPERATEUR_H
 #define RECUPERATEUR_H
+
 #include <stdio.h>
 #include <termios.h>
 #include <errno.h>
@@ -22,10 +23,11 @@
 #include <iomanip>
 #include <SerialStream.h>
 #include <cstdlib>
+#include <stdlib.h>
 
 using namespace std;
 using namespace LibSerial;
-SerialStream serial_port;
+
 
 class Recuperateur {
 public:
@@ -34,13 +36,13 @@ public:
     void ouvrirPort();
     void configurerPort(string portName, int baudRate);
     void recupererTrame(Trame maTrame);
-    void inspectionRS232();
 private:
     int m_RecuperationTrame;
     char m_StockageTrame[256];
     int m_PortSerie;
     int msTimeout;
     int numOfBytes;
+    SerialStream serial_port;
 
 };
 

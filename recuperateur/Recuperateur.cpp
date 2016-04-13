@@ -7,17 +7,18 @@
 
 #include "Recuperateur.h"
 
-
-char maTrame[256];
-string portName();
-//SerialStream serial_port ("/dev/ttyUSB0");
-
 Recuperateur::Recuperateur(){                                //constructeur
     
 }
 
 void Recuperateur::ouvrirPort(){
     serial_port.Open("/dev/ttyUSB0");                 //ouverture du port série RS232
+    if ( ! serial_port.good() ) 
+    {
+        std::cerr << "[" << __FILE__ << ":" << __LINE__ << "] "
+                << "ERREUR! Impossible d'ouvrir le port série." << std::endl ;
+        exit(1) ;
+    }
     
 }
 
@@ -63,49 +64,16 @@ void Recuperateur::recupererTrame(Trame maTrame){
     
     
     const int BUFFER_SIZE = 256;
-    char input_buffer[BUFFER_SIZE];
-    for (int i=0; i<BUFFER_SIZE; i++)
-        {
-            input_buffer[i] = i;
-        }
-    cout << "Lecture sur le port série ! " << endl;
-     
+    char input_buffer[BUFFER_SIZE]; 
     
-    if(serial_port.IsOpen()){
-        serial_port.read(input_buffer, BUFFER_SIZE);
+    if(serial_port.IsOpen()) {
+        serial_port.read(m_StockageTrame, BUFFER_SIZE);
+        cout << "Lecture sur le port série ! " << endl;
     }
-    else{
+    else {
         cout << "Erreur de lecture !" << endl;
     }
-   
-    while( serial_port.rdbuf()->in_avail() == 0 )
-    {
-        for(int i=0; i<BUFFER_SIZE; ++i){
-           const int BUFFER_SIZE = 256 ; 
-           char output_buffer[BUFFER_SIZE] ; 
-           output_buffer[i] = i ;
-           serial_port.write(output_buffer, BUFFER_SIZE);
-          // cout << "La trame est la suivante: " << endl;
-           }
-    }
-    /*
-     char out_buf[] = "Vérifier !";
-     serial_port.write(Trame, 5);
-     while( 1  )
-     {
-         char next_byte;
-         serial_port.get(next_byte);
-         std::cerr << next_byte;
-     }
-     std::cerr << std::endl ;
-     return EXIT_SUCCESS ; */
 }
-    
-
-void Recuperateur::inspectionRS232(){
-    
-}
-
 
 Recuperateur::~Recuperateur(){                      //destructeur
     
