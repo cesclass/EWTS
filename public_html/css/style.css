@@ -1,3 +1,4 @@
+
 /*==========================================================================*/
 /*                                                                          */
 /*  Projet EWTS-rt                                                          */
@@ -67,57 +68,23 @@ h1.title
 
 div.master
 {
-    margin-left: 290px;
+    margin-left: 15.1%;
     padding-top: 1px;
+}
+
+
+div#div_mesures
+{
+    max-width: 69.8%;
 }
 
 
 div.page
 {
     padding: 0;
-    margin: 0;
+    margin-left: 1%;
+    margin-right: 1%;
     margin-top: -7px
-}
-
-
-div.navig
-{
-    color: white;
-    position: fixed;
-    float: left;
-    min-height: 100vh;
-    width: 270px;
-    background-color: #555555;
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-bottom: 0px;
-}
-
-
-ul.navig
-{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: "esphimere", Arial;
-}
-
-
-li.navig
-{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 40px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-
-li.navig:hover
-{
-    cursor: pointer;
 }
 
 

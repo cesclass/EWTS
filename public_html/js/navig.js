@@ -1,4 +1,5 @@
-//==========================================================================//
+
+////==========================================================================//
 //                                                                          //
 //  Projet EWTS-rt                                                          //
 //  Fichier : navig.js                                                      //
@@ -36,6 +37,7 @@ function wait_nav_click()
        display_div(str_div_id);
        
        str_url_id = "#" + $(this).attr("id").replace("nav_", "");
+       try { str_url_id = str_url_id.replace("-", " "); } catch(e) {}
        document.location.href = str_url_id.toUpperCase();
        
     });

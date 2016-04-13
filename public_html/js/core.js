@@ -1,4 +1,5 @@
-//==========================================================================//
+
+////==========================================================================//
 //                                                                          //
 //  Projet EWTS-rt                                                          //
 //  Fichier : core.js                                                       //
@@ -12,7 +13,7 @@
 //  Variables de Debug
 var debugCycle = 400;       //  Temps entre chaque MaJ des infos
 var debugLoop = null;       //  ID de la boucle d'info
-var debugHTML = "";         //  String pour les infos
+var str_debug_HTML = "";    //  String pour les infos
 var d_nbRQ = 0;             //  Nombre de requêtes
 var d_nbTR = 0;             //  Nombre de trames reçus
 var d_nbERR = 0;            //  Nombre d'erreurs serveurs
@@ -22,7 +23,7 @@ var debug = null;           //  Variable servant au Debug...
 //  Variable de fonctionnement
 var cycleAJAX = 2000;       //  Temps entre chaque requetes AJAX
 var loopAJAX = null;        //  ID de la boucle AJAX
-var datasHTML = "";         //  String pour les données
+var str_datas_HTML = "";    //  String pour les données
 var str_start = "";         //  Strinog d'info sur le status d'execution
 var starting = false;       //  Determine si le script est en execution
 
@@ -46,6 +47,7 @@ var capteur = [{
     "conso":""
 }];
 
+var str_html = "<td>value</td></tr><br/>";
 
 $(main);
 $(debugging);
@@ -101,11 +103,7 @@ function ajaxResponse(dataAJAX, statusAJAX)
         //  Essaie de convertir les donnees json en objet
         //  si ce n'est pas deja fait...
         //  Permet le fonctionnement sour Chrome et Firefox
-        try
-        {
-            dataAJAX = JSON.parse(dataAJAX);
-        } 
-        catch(e) {}
+        try { dataAJAX = JSON.parse(dataAJAX); } catch(e) {}
         
         if(dataAJAX !== capteur)
         {
@@ -116,11 +114,11 @@ function ajaxResponse(dataAJAX, statusAJAX)
 }
 
 
-//  Fonction jsonToInnerHTML() declenche par ajaxResponse()
+//  Fonction datasToHTML() declenche par ajaxResponse()
 //  Charge de l'affichage des valeurs contenues dans l'objet capteur
 function datasToHTML()
 {
-    datasHTML = "<table> <tr>" 
+    str_datas_HTML = "<table> <tr>" 
             + "<th> brute </th>" 
             + "<th> id </th>" 
             + "<th> version </th>" 
@@ -140,7 +138,7 @@ function datasToHTML()
     
     for(var i = 0; i < capteur.length; i++)
     {
-        datasHTML += "<tr>"
+        str_datas_HTML += "<tr>"
                 + "<td>" + capteur[i].brute + "</td>" 
                 + "<td>" + capteur[i].id + "</td>" 
                 + "<td>" + capteur[i].version + "</td>" 
@@ -159,29 +157,31 @@ function datasToHTML()
                 + "</tr>";
     }
     
-    datasHTML += "<table> <br />";
-    $("#div_js_mesures").html(datasHTML);
+    str_datas_HTML += "<table> <br />";
+    $("#old_div_js_mesures").html(str_datas_HTML);
 }
+
 
 //==============================================//
 //                                              //
-//          /!\ Debug Zone /!\                  //
-//          /!\  Keep Out  /!\                  //
+//         /!\    DANGER    /!\                 //
+//         /!\  Debug Zone  /!\                 //
+//         /!\   Keep Out   /!\                 //
 //                                              //
 //==============================================//
 
 
 function debugToHTML()
 {
-    debugHTML = "";
-    debugHTML += "<table>"
+    str_debug_HTML = "";
+    str_debug_HTML += "<table>"
             + '<tr> <th> Status </th> <td id="td_status">' + str_start + "</td> </tr>"
             + "<tr> <th> Nb de Requêtes </th> <td>" + d_nbRQ + "</td> </tr>"
             + "<tr> <th> Trames reçus </th> <td>" + d_nbTR + "</td> </tr>"
             + "<tr> <th> Erreurs </th> <td>" + d_nbERR + "</td> </tr>"
             + "<tr> <th> Cycle </th> <td>" +  cycleAJAX/1000 + "s</td> </tr>"
             + "</table> <br />";
-    $("#div_js_debug").html(debugHTML);
+    $("#div_js_debug").html(str_debug_HTML);
     
     
     if(starting){

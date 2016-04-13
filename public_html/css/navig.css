@@ -1,0 +1,79 @@
+
+/*==========================================================================*/
+/*                                                                          */
+/*  Projet EWTS-rt                                                          */
+/*  Fichier : navig.css                                                     */
+/*  Emplacement : /style/navig.css                                          */
+/*                                                                          */
+/*  DEV : Cyril ESCLASSAN (cesclass)                                        */
+/*                                                                          */
+/*==========================================================================*/
+
+
+div.navig
+{
+    color: white;
+    position: fixed;
+    float: left;
+    min-height: 100vh;
+    width: 15%;
+    background-color: #555555;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+
+
+ul.navig
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: "esphimere", Arial;
+}
+
+
+li.navig
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+li.navig:hover
+{
+    cursor: pointer;
+}
+
+
+div.capt_navig
+{
+    position: absolute;
+    width: 15%;
+    margin-right: 0;
+    margin-left: 69.8%;
+    
+}
+
+
+ul.capt_navig
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: "esphimere", Arial;
+}
+
+
+li.capt_navig
+{
+    
+}
+

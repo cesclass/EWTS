@@ -18,6 +18,7 @@
         <meta charset="UTF-8">
         <link rel="icon" type="image/png" href="src/ewts_favicon.png" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/navig.css" />
     </head>
     
     <body>
@@ -57,20 +58,20 @@
             </div>
             
             <div class="page" id="div_mesures">
+                <div class="capt_navig">
+                    <nav>
+                        <p id="p_capt_eau" class="capt_navig">EAU</p>
+                        <ul id="ul_capt_eau" class="capt_navig"></ul>
+                        <p id="p_capt_elec" class="capt_navig">ELECTRICITE</p>
+                        <ul id="ul_capt_elec" class="capt_navig"></ul>
+                        <p id="p_capt_gaz" class="capt_navig">GAZ</p>
+                        <ul id="ul_capt_gaz" class="capt_navig"></ul>
+                    </nav>
+                </div>
+                
                 <h2 class="page">Mesures</h2>
                 <br/>
                 <div id="div_js_mesures"></div>
-                
-                <div class="capt_navig">
-                    <nav>
-                        <p id="p_capt_eau">EAU</p>
-                        <ul id="ul_capt_eau"></ul>
-                        <p id="p_capt_elec">ELECTRICITE</p>
-                        <ul id="ul_capt_elec"></ul>
-                        <p id="p_capt_gaz">GAZ</p>
-                        <ul id="ul_capt_gaz"></ul>
-                    </nav>
-                </div>
             </div>
             
             <div class="page" id="div_debug">
@@ -79,6 +80,8 @@
                 <button id="d_button">Start/Stop</button>
                 <br/>
                 <div id="div_js_debug"></div>
+                <br/>
+                <div id="old_div_js_mesures"></div>
             </div>
             
             <div class="page" id="div_a-propos">
